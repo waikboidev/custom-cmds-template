@@ -8,26 +8,53 @@ const replacePlaceholders = (data, context) => {
         }
         return data;
     }
+    
     let replaced = data;
-    const placeholderRegex = /\\{([a-zA-Z0-9\\._\\[\\]]+)\\}/g;
+
+    // This regex now handles all placeholder types in one pass to avoid ordering issues.
+    const placeholderRegex = /\{([a-zA-Z0-9\._\(\)]+)\}/g;
+    
     return replaced.replace(placeholderRegex, (match, placeholder) => {
         try {
+            // Handle args.from(N)
+            if (placeholder.startsWith('args.from(')) {
+                const startIndex = parseInt(placeholder.substring(10, placeholder.length - 1), 10) - 1;
+                if (context.args && !isNaN(startIndex) && startIndex >= 0 && startIndex < context.args.length) {
+                    return context.args.slice(startIndex).join(' ');
+                }
+                return ''; // Return empty if index is invalid
+            }
+            
+            // Handle argN
             if (placeholder.startsWith('arg')) {
                 const index = parseInt(placeholder.slice(3), 10) - 1;
                 if (context.args && context.args[index]) {
                     return String(context.args[index]).replace(/[<@!&#>]/g, '');
                 }
             }
-            const keys = placeholder.split(/[\\.\\[\\]]+/).filter(Boolean);
+
+            // Handle args
+            if (placeholder === 'args') {
+                return context.args.join(' ');
+            }
+
+            // Handle path-based placeholders like user.id
+            const keys = placeholder.split(/[\.\[\]]+/).filter(Boolean);
             let value = context;
             for (const key of keys) {
-                if (value && typeof value === 'object' && key in value) value = value[key];
-                else return match;
+                if (value && typeof value === 'object' && key in value) {
+                    value = value[key];
+                } else {
+                    return match; // Path not found
+                }
             }
             return value;
-        } catch { return match; }
+        } catch { 
+            return match; // Error during replacement
+        }
     });
 };
+
 
 const executeActions = async (actions, messageOrInteraction, context) => {
     let lastMessage = null;
@@ -38,7 +65,7 @@ const executeActions = async (actions, messageOrInteraction, context) => {
     for (const actionDef of actions) {
         try {
             const actionType = Object.keys(actionDef)[0];
-            const action = context.client.customActions.get(actionType);
+            const action = context.client.actions.get(actionType);
             
             if (!action) {
                 console.warn(`Unknown action type: ${actionType}`);
