@@ -65,7 +65,7 @@ const executeActions = async (actions, messageOrInteraction, context) => {
     for (const actionDef of actions) {
         try {
             const actionType = Object.keys(actionDef)[0];
-            const action = context.client.actions.get(actionType);
+            const action = context.client.customActions.get(actionType);
             
             if (!action) {
                 console.warn(`Unknown action type: ${actionType}`);
