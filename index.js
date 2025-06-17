@@ -117,7 +117,7 @@ client.on('messageCreate', async (message) => {
         const actions = Array.isArray(commandLogic) ? commandLogic : commandLogic.actions;
         if (!actions) return;
 
-        const context = { args, user: message.author, channel: message.channel, guild: message.guild, client };
+        const context = { args, member: message.member, user: message.author, channel: message.channel, guild: message.guild, client };
         await executeActions(actions, message, context);
     }
 });
@@ -142,6 +142,7 @@ client.on('interactionCreate', async (interaction) => {
 
     const context = {
         interaction,
+        member: interaction.member,
         user: interaction.user,
         channel: interaction.channel,
         guild: interaction.guild,
