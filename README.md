@@ -14,11 +14,11 @@ A powerful and flexible Discord bot template that allows you to create complex c
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repo-url>
+    git clone https://github.com/waikboidev/custom-cmds-template.git
     ```
 2.  **Install dependencies:**
     ```bash
-    npm install
+    npm install discord.js dotenv
     ```
 3.  **Configure your bot:**
     - Rename `.env.example` to `.env`.
