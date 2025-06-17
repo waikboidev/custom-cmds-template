@@ -62,39 +62,39 @@ $deletecmd hello
 
 Here is a list of all the available actions you can use in your custom commands:
 
-| Action | Description |
-| :--- | :--- |
-| `addReaction` | Adds a reaction to a message. |
-| `addRole` | Adds a role to a member. |
-| `archiveThread` | Archives or unarchives a thread. |
-| `banMember` | Bans a member from the server. |
-| `bulkDelete` | Deletes a specified number of messages. |
-| `createChannel` | Creates a new text channel. |
-| `createEmoji` | Creates a new emoji in the server. |
-| `createInvite` | Creates an invite to a channel. |
-| `createRole` | Creates a new role. |
-| `createSticker` | Creates a new sticker in the server. |
-| `createThread` | Creates a new thread from a message. |
-| `delChannel` | Deletes a channel. |
-| `deleteEmoji` | Deletes an emoji from the server. |
-| `deleteMessage` | Deletes a message. |
-| `deleteSticker` | Deletes a sticker from the server. |
-| `delRole` | Deletes a role. |
-| `editMessage` | Edits a message. |
-| `kickMember` | Kicks a member from the server. |
-| `lockThread` | Locks or unlocks a thread. |
-| `moveMember` | Moves a member to a different voice channel. |
-| `pinMessage` | Pins a message in the channel. |
-| `removeReaction` | Removes a reaction from a message. |
-| `removeRole` | Removes a role from a member. |
-| `reply` | Replies to the command message. |
-| `replyWithButtons` | Replies with a message containing buttons. |
-| `replyWithSelect` | Replies with a message containing a select menu. |
-| `sendDM` | Sends a direct message to a user. |
-| `setPermissions` | Sets channel permissions for a user or role. |
-| `timeoutMember` | Times out a member. |
-| `unpinMessage` | Unpins a message in the channel. |
-| `wait` | Waits for a specified duration. |
+| Action | Parameters | Description |
+| :--- | :--- | :--- |
+| `addReaction` | `message_id`, `emoji` | Adds a reaction to a message. |
+| `addRole` | `user_id`, `role_id` | Adds a role to a member. |
+| `archiveThread` | `channel_id`, `archived` (boolean) | Archives or unarchives a thread. |
+| `banMember` | `user_id` (or the root parameter), `reason` | Bans a member from the server. |
+| `bulkDelete` | `limit` (number) | Deletes a specified number of messages. |
+| `createChannel` | The channel name as a string. | Creates a new text channel. |
+| `createEmoji` | `image_url`, `name` | Creates a new emoji in the server. |
+| `createInvite` | `channel_id`, `max_uses`, `max_age` | Creates an invite to a channel. |
+| `createRole` | `name`, `color`, `permissions` (array of strings) | Creates a new role. |
+| `createSticker` | `file_url`, `name`, `tags` | Creates a new sticker in the server. |
+| `createThread` | `message_id`, `name`, `auto_archive_duration` | Creates a new thread from a message. |
+| `delChannel` | The channel ID as a string. | Deletes a channel. |
+| `deleteEmoji` | `emoji_id` | Deletes an emoji from the server. |
+| `deleteMessage` | `message_id` | Deletes a message. |
+| `deleteSticker` | `sticker_id` | Deletes a sticker from the server. |
+| `delRole` | The role ID as a string. | Deletes a role. |
+| `editMessage` | `message_id`, `content` | Edits a message. |
+| `kickMember` | `user_id` (or the root parameter), `reason` | Kicks a member from the server. |
+| `lockThread` | `channel_id`, `locked` (boolean) | Locks or unlocks a thread. |
+| `moveMember` | `user_id`, `channel_id` | Moves a member to a different voice channel. |
+| `pinMessage` | `message_id` | Pins a message in the channel. |
+| `removeReaction` | `message_id`, `emoji` | Removes a reaction from a message. |
+| `removeRole` | `user_id`, `role_id` | Removes a role from a member. |
+| `reply` | `reply` (or the root parameter), `ephemeral` (boolean) | Replies to the command message. |
+| `replyWithButtons` | `content`, `buttons` (array), `ephemeral` (boolean) | Replies with a message containing buttons. |
+| `replyWithSelect` | `content`, `custom_id`, `placeholder`, `options`, `ephemeral` (boolean) | Replies with a message containing a select menu. |
+| `sendDM` | `user_id`, `content` | Sends a direct message to a user. |
+| `setPermissions` | `channel_id`, `target_id`, `allow` (array), `deny` (array) | Sets channel permissions for a user or role. |
+| `timeoutMember` | `user_id`, `durationMs`, `reason` | Times out a member. |
+| `unpinMessage` | `message_id` | Unpins a message in the channel. |
+| `wait` | The duration in milliseconds as a number. | Waits for a specified duration. |
 
 ## 🔧 Expandability and Modification
 
