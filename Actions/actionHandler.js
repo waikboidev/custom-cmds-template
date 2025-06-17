@@ -48,6 +48,9 @@ const replacePlaceholders = (data, context) => {
                     return match; // Path not found
                 }
             }
+            if (value instanceof Date) {
+                return value.toLocaleString();
+            }
             return value;
         } catch { 
             return match; // Error during replacement
