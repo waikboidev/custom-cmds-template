@@ -2,6 +2,10 @@
 
 A powerful and flexible Discord bot template that allows you to create complex custom commands using a simple, JSON-based action system. This template is designed for easy expansion, allowing you to add new actions and functionality with minimal effort.
 
+## 📚 Wiki & Documentation
+
+For a comprehensive guide including installation, examples, and core concepts, please visit the **[Official Wiki Page](https://github.com/waikboidev/custom-cmds-template/wiki)**.
+
 ## ✨ Features
 
 - **Dynamic Command Creation:** Create and delete commands on-the-fly without restarting the bot.
@@ -94,7 +98,7 @@ Here is a list of all the available actions you can use in your custom commands:
 | `setPermissions` | `channel_id`, `target_id`, `allow` (array), `deny` (array) | Sets channel permissions for a user or role. |
 | `timeoutMember` | `user_id`, `durationMs`, `reason` | Times out a member. |
 | `unpinMessage` | `message_id` | Unpins a message in the channel. |
-| `wait` | The duration in milliseconds as a number. | Waits for a specified duration. |
+| `wait` | The duration in milliseconds as a number. | Waits for a specified duration.
 
 ## 🔧 Expandability and Modification
 
